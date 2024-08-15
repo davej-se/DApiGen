@@ -1,0 +1,5282 @@
+openapi: 3.0.0
+paths:
+  /v1/clan-admin/{clanUuid}/snapshot:
+    post:
+      operationId: ClanAdminControllerV1_snapshot
+      summary: >-
+        Take an asset snapshot at given time. Token filters use AND. If you need
+        OR functionality, make separate requests [Required Permissions]:
+        assets:read  [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotQueryOptionsV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/staking-snapshot:
+    post:
+      operationId: ClanAdminControllerV1_stakingSnapshot
+      summary: >-
+        Take a taking snapshot at given point in time. [Required Permissions]:
+        assets:read  [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StakingSnapshotRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StakingSnapshotResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/moonpower:
+    post:
+      operationId: ClanAdminControllerV1_getMoonpower
+      summary: >-
+        Take a moonpower snapshot. This endpoint might not be permanent.
+        [Required Permissions]: assets:read  [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoonpowerRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoonpowerResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/users:
+    post:
+      operationId: ClanAdminControllerV1_getUsers
+      summary: >-
+        Users subscribed to clan. Optionally filterable by userUuids. [Required
+        Permissions]: clan_users:read  [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/create:
+    post:
+      operationId: ClanAdminControllerV1_createUserList
+      summary: >-
+        Create a new user list [Required Permissions]: user_list:write  [API Key
+        Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserListRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserListResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/list:
+    post:
+      operationId: ClanAdminControllerV1_getUserLists
+      summary: >-
+        Take a taking snapshot at given point in time. [Required Permissions]:
+        user_list:read  [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListUserListRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserListResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/users:
+    post:
+      operationId: ClanAdminControllerV1_getUserListByUuid
+      summary: >-
+        Get users in a list with pagination. Optionally Filterable by userUuid
+        and/or userListUuid [Required Permissions]: user_list:read  [API Key
+        Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserListUsersRequestV1Dto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListUsersResponseV1Dto'
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/{userListUuid}/update:
+    post:
+      operationId: ClanAdminControllerV1_updateUserList
+      summary: >-
+        Update a user list by UUID [Required Permissions]: user_list:write  [API
+        Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userListUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserListRequestV1Dto'
+      responses:
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/{userListUuid}/delete:
+    post:
+      operationId: ClanAdminControllerV1_deleteUserList
+      summary: >-
+        Delete a user list by UUID [Required Permissions]: user_list:write  [API
+        Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userListUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      responses:
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/{userListUuid}/users/add:
+    post:
+      operationId: ClanAdminControllerV1_addUsersToList
+      summary: >-
+        Add users to a user list [Required Permissions]: user_list:write  [API
+        Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userListUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUsersToListRequestV1Dto'
+      responses:
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /v1/clan-admin/{clanUuid}/user-lists/{userListUuid}/users/remove:
+    post:
+      operationId: ClanAdminControllerV1_removeUsersFromList
+      summary: >-
+        Remove users from a user list [Required Permissions]: user_list:write 
+        [API Key Supported]
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userListUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API Key for authentication
+          required: false
+          schema:
+            type: string
+        - name: x-api-secret
+          in: header
+          description: API Secret for authentication
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveUsersFromListRequestV1Dto'
+      responses:
+        '401':
+          description: API Key invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Clan Admin API [Public]
+      security:
+        - bearer: []
+  /staking/campaigns-unauthenticated:
+    get:
+      operationId: StakingapiController_getCampaignsUnauthenticated
+      summary: ''
+      description: Get staking campaigns unauthenticated
+      parameters: []
+      responses:
+        '200':
+          description: Staking campaigns.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicViewStakingCampaignDto'
+      tags:
+        - Staking [Private]
+  /staking/campaigns-authenticated:
+    get:
+      operationId: StakingapiController_getCampaignsAuthenticated
+      summary: Get staking campaigns authenticated.
+      parameters: []
+      responses:
+        '200':
+          description: Staking campaigns.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthenticatedViewStakingCampaignDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Staking [Private]
+      security:
+        - bearer: []
+  /staking/{stakingCampaignUuid}/join:
+    post:
+      operationId: StakingapiController_joinCampaign
+      summary: Join a staking campaign.
+      parameters:
+        - name: stakingCampaignUuid
+          required: true
+          in: path
+          description: UUID of the staking campaign
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Staking [Private]
+      security:
+        - bearer: []
+  /staking/{stakingCampaignUuid}/leave:
+    post:
+      operationId: StakingapiController_leaveCampaign
+      summary: Leave a staking campaign.
+      parameters:
+        - name: stakingCampaignUuid
+          required: true
+          in: path
+          description: UUID of the staking campaign
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Staking [Private]
+      security:
+        - bearer: []
+  /oauth2/client/create:
+    post:
+      operationId: Oauth2ClientController_createClient
+      summary: 'Create OAuth 2.0 client. [Required Permissions]: all_clans:crud '
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Oauth2CreateClientDto'
+      responses:
+        '201':
+          description: The client has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oauth2ClientDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - OAuth 2.0 Client
+      security:
+        - bearer: []
+  /oauth2/clients:
+    get:
+      operationId: Oauth2ClientController_getClients
+      summary: Get all OAuth 2.0 clients owned by user.
+      parameters: []
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+        default:
+          description: Clients for user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Oauth2ClientDto'
+      tags:
+        - OAuth 2.0 Client
+      security:
+        - bearer: []
+  /oauth2/client/{clientId}/update:
+    patch:
+      operationId: Oauth2ClientController_updateClient
+      summary: 'Update OAuth 2.0 Client. [Required Permissions]: all_clans:crud '
+      parameters:
+        - name: clientId
+          required: true
+          in: path
+          description: OAuth 2.0 Client ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Oauth2ClientUpdateDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+        default:
+          description: Updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oauth2ClientDto'
+      tags:
+        - OAuth 2.0 Client
+      security:
+        - bearer: []
+  /oauth2/client/{clientId}/rotate_client_secret:
+    post:
+      operationId: Oauth2ClientController_rotateClientSecret
+      summary: 'Rotate OAuth secret. [Required Permissions]: all_clans:crud '
+      parameters:
+        - name: clientId
+          required: true
+          in: path
+          description: OAuth 2.0 Client ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+        default:
+          description: Updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oauth2ClientDto'
+      tags:
+        - OAuth 2.0 Client
+      security:
+        - bearer: []
+  /oauth2/client/{clientId}/rotate_sso_keys:
+    post:
+      operationId: Oauth2ClientController_rotateSsoKeys
+      summary: 'Rotate SSO keys. [Required Permissions]: all_clans:crud '
+      parameters:
+        - name: clientId
+          required: true
+          in: path
+          description: OAuth 2.0 Client ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+        default:
+          description: Updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oauth2ClientDto'
+      tags:
+        - OAuth 2.0 Client
+      security:
+        - bearer: []
+  /oauth2/client/{clientId}/public:
+    get:
+      operationId: Oauth2ClientController_publicClient
+      summary: >-
+        Get public information about a client. Used for displaying client name
+        and pretty scope names to user
+      parameters:
+        - name: clientId
+          required: true
+          in: path
+          description: OAuth 2.0 Client ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Public client info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oauth2PublicClientDto'
+      tags:
+        - OAuth 2.0 Client
+  /oauth2/authorize:
+    get:
+      operationId: Oauth2AuthorizationController_authorize
+      summary: >-
+        Produces temporary code that can be used to get an access token. Expand
+        and read the description!
+      description: >-
+        Drop user off
+        at:<br>https://portal.moonsama.com/oauth<br>?client_id=asdkfljkjklfajljkl2324<br>&redirect_uri=http%3A%2F%2Flocalhost%2Fhome<br>&response_type=code<br>&scope=user%3Agamer_tag.read%20user%3Auuid.read<br><br>client_id
+        of your app<br>redirect_uri whitelisted url where user will be
+        redirected after approving app<br>response_type always 'code'<br>scope
+        requested scopes, space delimited<br><br>User will then go through OAuth
+        flow after which the user will be redirected back to the client (oauth2
+        app) with a temp code that can be used to get an access token.
+      parameters:
+        - name: response_type
+          required: true
+          in: query
+          description: should always be code
+          example: code
+          schema:
+            type: string
+        - name: client_id
+          required: true
+          in: query
+          description: client_id
+          schema:
+            type: string
+        - name: redirect_uri
+          required: false
+          in: query
+          description: >-
+            redirection URI using the "application/x-www-form-urlencoded"
+            format, will check against redirect URI authorized by client,
+            included incase later it is decided that a client can have multiple
+            redirect uris. Dont use now
+          example: http://localhost:3000/cb
+          schema:
+            type: string
+        - name: scope
+          required: false
+          in: query
+          description: >-
+            Space delimited scopes, if not included will grant all scopes that
+            client is allowed
+          example: user:gamer_tag.read user:uuid.read
+          schema:
+            type: string
+        - name: state
+          required: false
+          in: query
+          description: >-
+            RECOMMENDED. An opaque value used by the client to maintain state
+            between the request and callback. The authorization server includes
+            this value when redirecting the user-agent back to the client. The
+            parameter SHOULD be used for preventing cross-site request forgery
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            {"url": "callback.uri?code=akdflajdflkj(&state=xyz) OR
+            callback.uri?error=invalid_request|access_denied|unsupported_response_type&error_description=state%20must%20be%20alphanumeric"}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeResponseDto'
+      tags:
+        - OAuth 2.0 Authorization
+      security:
+        - bearer: []
+  /oauth2/token:
+    post:
+      operationId: Oauth2AuthorizationController_token
+      summary: Get an access token from a temp code. Requires clientId and clientSecret
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenBodyDto'
+      responses:
+        '200':
+          description: Code was successfully used and access token generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponseDto'
+      tags:
+        - OAuth 2.0 Authorization
+  /oauth2/resource/user:
+    get:
+      operationId: Oauth2ResourceController_getUser
+      summary: >-
+        Get user uuid, gamertag, and updatedAt. updatedAt shows when users added
+        asset, removed asset, etc. Events that change updatedAt subject to
+        change. Required scopes: user:gamer_tag.read, user:uuid.read
+      parameters: []
+      responses:
+        default:
+          description: User data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthGetUserDto'
+      tags:
+        - OAuth 2.0 Resource [Public]
+      security:
+        - oauth2:
+            - user:uuid.read
+            - user:gamer_tag.read
+        - bearer: []
+  /oauth2/resource/gamertag:
+    put:
+      operationId: Oauth2ResourceController_setGamerTag
+      summary: >-
+        Set gamertag and returned sanitized one that was set. Will error http
+        400 if gamer tag already in use etc. Required scopes:
+        user:gamer_tag.read, user:gamer_tag.write
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthSetGamerTagRequestDto'
+      responses:
+        default:
+          description: Returns sanitized gamer tag that was used
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthSetGamerTagDto'
+      tags:
+        - OAuth 2.0 Resource [Public]
+      security:
+        - oauth2:
+            - user:gamer_tag.read
+            - user:gamer_tag.write
+        - bearer: []
+  /oauth2/resource/assets:
+    get:
+      operationId: Oauth2ResourceController_getUserAssets
+      summary: 'Fetches a users assets. Required scopes: user:assets.read'
+      parameters: []
+      responses:
+        default:
+          description: Users assets, skins, and fungible asset balances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthUserAssetsResponseDto'
+      tags:
+        - OAuth 2.0 Resource [Public]
+      security:
+        - oauth2:
+            - user:assets.read
+        - bearer: []
+  /oauth2/resource/karen-sama:
+    get:
+      operationId: Oauth2ResourceController_getKarensamaEligible
+      summary: 'User eligible for karensama. Required scopes: user:assets.read'
+      parameters: []
+      responses:
+        default:
+          description: Is user eligible for karensama?
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OauthUserKarenSamaResponseDto'
+      tags:
+        - OAuth 2.0 Resource [Public]
+      security:
+        - oauth2:
+            - user:assets.read
+        - bearer: []
+  /user/profile:
+    get:
+      operationId: ProfileApiController_profile
+      summary: Fetches user profile
+      parameters: []
+      responses:
+        '200':
+          description: ProfileNewDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileNewDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/admin-profile:
+    get:
+      operationId: ProfileApiController_adminProfile
+      summary: Fetches user admin profile
+      parameters: []
+      responses:
+        '200':
+          description: AdminProfileDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminProfileDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/in-game-items:
+    get:
+      operationId: ProfileApiController_inGameItems
+      summary: Get in game items
+      parameters: []
+      responses:
+        '200':
+          description: InGameItemDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InGameItemDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/in-game-resources:
+    get:
+      operationId: ProfileApiController_inGameResources
+      summary: Get in game resources
+      parameters: []
+      responses:
+        '200':
+          description: InGameResourceDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InGameResourceDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/verifyjwt/{jwttoken}:
+    get:
+      operationId: ProfileApiController_verify
+      summary: Verify jwt.
+      parameters:
+        - name: jwttoken
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/inprogress:
+    get:
+      operationId: ProfileApiController_getGameInProgress
+      summary: Returns whether there is an active game in progress or not
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - user [Private]
+  /user/gamertag:
+    put:
+      operationId: ProfileApiController_setGamerTag
+      summary: Sets gamer tag.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GamerTagDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /user/portal-contract-permissions:
+    get:
+      operationId: ProfileApiController_portalContractPermissions
+      summary: Get portal contract permissions
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalContractPermissions'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - user [Private]
+      security:
+        - bearer: []
+  /game/players/uuids:
+    get:
+      operationId: GameApiController_uuids
+      summary: Map of uuids to minecraftUuids
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: >-
+            number of results WARNING: results are sorted by minecraftUuid, if
+            minecraft users are added output will be inconsistent
+          schema:
+            type: string
+        - name: offset
+          required: false
+          in: query
+          description: >-
+            offset WARNING: results are sorted by minecraftUuid, if minecraft
+            users are added output will be inconsistent
+          schema:
+            type: string
+        - name: minecraftUuids
+          required: false
+          in: query
+          description: Only return a map for these minecraft uuids
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/player/{minecraftUuid}/profileByMinecraftUuid:
+    get:
+      operationId: GameApiController_profileByMinecraftUuid
+      summary: Fetches user profile by minecraftUuid
+      parameters:
+        - name: minecraftUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/player/{uuid}/profile:
+    get:
+      operationId: GameApiController_profile
+      summary: Fetches user profile by uuid
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/player/{uuid}/skin:
+    put:
+      operationId: GameApiController_setUserSkin
+      summary: Sets active user skin.
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkinselectDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/player/{uuid}/allowed:
+    get:
+      operationId: GameApiController_allowed
+      summary: Fetches user profile
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/world/{world}/plots:
+    get:
+      operationId: GameApiController_getWorldPlots
+      summary: Fetches world plots
+      parameters:
+        - name: world
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/player/{uuid}/snapshot:
+    put:
+      operationId: GameApiController_playerSnapshot
+      summary: Saves player resources
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/snapshot:
+    put:
+      operationId: GameApiController_snapshot
+      summary: Saves resources
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkSnapshotRequestDto'
+      responses:
+        '200':
+          description: >-
+            The result of the bulk snapshot process, an array indicating the
+            success or failure of each item.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: boolean
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/snapshots/{gameId}:
+    delete:
+      operationId: GameApiController_deleteSnapshotsByGameId
+      summary: Wipes snapshot_item_entity by game id
+      parameters:
+        - name: gameId
+          required: true
+          in: path
+          description: Game id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/snapshots:
+    get:
+      operationId: GameApiController_getSnapshots
+      summary: Gets all entries in snapshot_item_entity
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SnapshotRowDto'
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/snapshot/materials:
+    get:
+      operationId: GameApiController_getSnapshottableMaterials
+      summary: Returns the permitted snapshottable in-game materials
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/ongoing:
+    get:
+      operationId: GameApiController_getGameInProgress
+      summary: Returns whether there is an active game in progress or not
+      parameters:
+        - name: kind
+          required: true
+          in: query
+          description: 'Kind of game that we check. Default: CARNAGE'
+          schema:
+            enum:
+              - ADVANCEMENTS
+              - SCOREBOARD
+              - CARNAGE
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/gametypes:
+    get:
+      operationId: GameApiController_gameTypes
+      summary: fetches game types
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+  /game/games:
+    get:
+      operationId: GameApiController_games
+      summary: fetch games
+      parameters:
+        - name: gameTypeId
+          required: false
+          in: query
+          description: 'Filter results by game type id. Default: query all games'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+  /game/gametype/{typeId}:
+    put:
+      operationId: GameApiController_setGameType
+      summary: Upserts a game type entry
+      parameters:
+        - name: typeId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetGameTypeDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/game/{gameId}:
+    put:
+      operationId: GameApiController_setGame
+      summary: >-
+        Upserts a game entry. ongoing is only obeyed for the first request
+        (insert). After that (on updates) it is ignored.
+      parameters:
+        - name: gameId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetGameDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /game/skins:
+    get:
+      operationId: GameApiController_skins
+      summary: Fetches skin data
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - game [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/players/updates:
+    get:
+      operationId: AssetApiController_userUpdates
+      summary: >-
+        Fetches an array of user uuids whose profiles, assets, skins, or
+        resources have changed since the provided timestamp
+      parameters:
+        - name: take
+          required: false
+          in: query
+          description: number of results
+          schema:
+            type: string
+        - name: offset
+          required: false
+          in: query
+          description: >-
+            offset, WARNING output could be inconsistent between pages, it is
+            recommended to fetch the full array without offset or limit
+          schema:
+            type: string
+        - name: t
+          required: true
+          in: query
+          description: >-
+            String int in seconds since epoch, equivalent to
+            String(Math.floor(new Date().getTime()/1000))
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of user uuids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/player/{uuid}/data:
+    get:
+      operationId: AssetApiController_userData
+      summary: >-
+        Fetches a user's assets, profile, skins, resources, and resource
+        balances
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Full user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDataDto'
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/player/{uuid}/assets:
+    get:
+      operationId: AssetApiController_userAssets
+      summary: Fetches a user's assets
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/fingerprint/assets/players:
+    get:
+      operationId: AssetApiController_getAssetFingerprints
+      summary: Gets the fingerprints of all the players assets
+      parameters:
+        - name: take
+          required: true
+          in: query
+          description: Pagination take. Number of users queried.
+          schema:
+            default: 100
+            type: number
+        - name: offset
+          required: true
+          in: query
+          description: Pagination offset
+          schema:
+            default: 0
+            type: number
+        - name: specifics
+          required: false
+          in: query
+          description: Specific user uuids (trimmed) to query instead of take and offset.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/fingerprint/assets/player/{trimmedUuid}:
+    get:
+      operationId: AssetApiController_getAssetFingerprintForPlayer
+      summary: Gets the fingerprints of all the players assets
+      parameters:
+        - name: trimmedUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/resourceinventory/player/{trimmedUuid}:
+    get:
+      operationId: AssetApiController_getResourceInventoryPlayer
+      summary: Gets player resource inventory
+      parameters:
+        - name: trimmedUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+    put:
+      operationId: AssetApiController_setResourceInventoryPlayer
+      summary: Create player resource inventory
+      parameters:
+        - name: trimmedUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetResourceInventoryItems'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/resourceinventory/offset/player/{trimmedUuid}:
+    get:
+      operationId: AssetApiController_getResourceInventoryOffsetPlayer
+      summary: Gets player resource inventory offset
+      parameters:
+        - name: trimmedUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/fungible/balances/player/{trimmedUuid}:
+    get:
+      operationId: AssetApiController_getFungibleBalancesForPlayer
+      summary: Gets player enraptured/imported fungible balances with offsets applied
+      parameters:
+        - name: trimmedUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /asset/fungible/balances/players:
+    get:
+      operationId: AssetApiController_getPlayersFungibleBalances
+      summary: Gets players enraptured/imported fungible balances with offsets applied
+      parameters:
+        - name: take
+          required: false
+          in: query
+          description: Pagination take. Number of users queried.
+          schema:
+            default: 100
+            type: number
+        - name: offset
+          required: false
+          in: query
+          description: Pagination offset
+          schema:
+            default: 0
+            type: number
+        - name: excludeEmpty
+          required: true
+          in: query
+          description: Whether to exclude entries with no balances
+          schema:
+            default: false
+            type: boolean
+        - name: specifics
+          required: false
+          in: query
+          description: Specific user uuids (trimmed) to query instead of take and offset.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - asset [Private]
+      security:
+        - AuthenticationHeader: []
+  /oracle/config:
+    get:
+      operationId: OracleApiController_config
+      summary: Get oracle configuration.
+      parameters: []
+      responses:
+        '200':
+          description: OracleConfigResponseDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OracleConfigResponseDto'
+      tags:
+        - oracle [Private]
+  /oracle/faucet:
+    get:
+      operationId: OracleApiController_getFaucet
+      summary: Get faucet status.
+      parameters: []
+      responses:
+        '200':
+          description: FaucetResponseDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaucetResponseDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+    put:
+      operationId: OracleApiController_faucet
+      summary: Request faucet.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaucetRequestDto'
+      responses:
+        '200':
+          description: FaucetResponseDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaucetResponseDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /oracle/in:
+    put:
+      operationId: OracleApiController_inRequest
+      summary: Fetches oracle data for an import
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InBatchRequestDto'
+      responses:
+        '200':
+          description: CallparamDto[]
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallparamDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /oracle/in/confirm:
+    put:
+      operationId: OracleApiController_inConfirm
+      summary: Confirms an import request, sealing the deal.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InConfirmRequestDto'
+      responses:
+        '200':
+          description: InConfirmResponseDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InConfirmResponseDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /oracle/out:
+    put:
+      operationId: OracleApiController_outRequest
+      summary: Fetches oracle data for an export.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutBatchRequestDto'
+      responses:
+        '200':
+          description: CallparamDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallparamDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /oracle/out/confirm:
+    put:
+      operationId: OracleApiController_outConfirm
+      summary: Confirms an export request, sealing the deal.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutConfirmRequestDto'
+      responses:
+        '200':
+          description: OutConfirmRequestDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutConfirmRequestDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /oracle/summon:
+    put:
+      operationId: OracleApiController_summon
+      summary: Summons in game resources for the user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummonDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - oracle [Private]
+      security:
+        - bearer: []
+  /nonce/create-nonce:
+    put:
+      operationId: NonceController_generateNonce
+      summary: Create nonce.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNonceRequestDto'
+      responses:
+        '200':
+          description: CreateNonceResponseDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateNonceResponseDto'
+      tags:
+        - nonce [Private]
+  /nft/collection-assets:
+    get:
+      operationId: NftApiController_getNFTs
+      summary: Fetches collection assets by IDs
+      parameters:
+        - name: assetIds
+          required: true
+          in: query
+          description: Asset IDs being queried
+          schema:
+            type: array
+            items:
+              type: string
+        - name: chainId
+          required: false
+          in: query
+          description: Chain ID
+          schema:
+            default: 1285
+            type: string
+        - name: assetType
+          required: true
+          in: query
+          description: Asset type
+          schema:
+            type: string
+        - name: assetAddress
+          required: true
+          in: query
+          description: Asset address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - nft [Private]
+      security:
+        - AuthenticationHeader: []
+  /nft/collection:
+    get:
+      operationId: NftApiController_getNFTCollection
+      summary: Fetches all collection assets paginated
+      parameters:
+        - name: take
+          required: true
+          in: query
+          description: Pagination take. Number of assets queried.
+          schema:
+            default: 100
+            type: number
+        - name: offset
+          required: true
+          in: query
+          description: Pagination offset
+          schema:
+            default: 0
+            type: number
+        - name: chainId
+          required: false
+          in: query
+          description: Chain ID
+          schema:
+            default: 1285
+            type: string
+        - name: assetType
+          required: true
+          in: query
+          description: Asset type
+          schema:
+            type: string
+        - name: assetAddress
+          required: true
+          in: query
+          description: Asset address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - nft [Private]
+      security:
+        - AuthenticationHeader: []
+  /admin/user/{uuid}/profile:
+    get:
+      operationId: AdminApiController_profile
+      summary: 'Fetches user profile. [Required Permissions]: all_portal_users:read '
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/player/{uuid}/snapshot:
+    put:
+      operationId: AdminApiController_snapshot
+      summary: 'Saves player resources. [Required Permissions]: reward_snapshot:write '
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotsDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/bank:
+    put:
+      operationId: AdminApiController_bank
+      summary: >-
+        Processes snapshot items and banks them into the user inventory. Note:
+        summoning must be disabled on MOVR and SAMA or summonDisableOverride =
+        true for banking to proceed. [Required Permissions]:
+        reward_banker:write 
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/gametypes:
+    get:
+      operationId: AdminApiController_gameTypes
+      summary: 'Fetches game types [Required Permissions]: event:write '
+      parameters: []
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/games:
+    get:
+      operationId: AdminApiController_setGame
+      summary: 'Upserts a game entry. [Required Permissions]: event:write '
+      parameters: []
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/karensama:
+    get:
+      operationId: AdminApiController_getKarensama
+      summary: Returns array of karensama member uuid
+      parameters:
+        - name: x-api-key
+          in: header
+          description: API key needed to access this endpoint
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+        - admin [Private]
+  /admin/update-metadata:
+    post:
+      operationId: AdminApiController_updateMetadata
+      summary: >-
+        Forces a metadata update for an asset_entity. [Required Permissions]:
+        all_portal_users:read 
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetadataDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/recover-asset:
+    post:
+      operationId: AdminApiController_recoverAsset
+      summary: >-
+        Recover an asset with indexer lookup. Only will work for inflow that
+        happened after Nov 12, 2022 if userUuid not provided. [Required
+        Permissions]: all_portal_users:read 
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverAssetDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /admin/tabular-data:
+    post:
+      operationId: AdminApiController_tabularData
+      summary: >-
+        Get tabular data for admin consumption. [Required Permissions]:
+        all_clans:read 
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TabularDataRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TabularDataResponseDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - admin [Private]
+      security:
+        - bearer: []
+  /domains/all-unauthenticated:
+    get:
+      operationId: DomainsController_getDomainsUnauthenticated
+      summary: Get domains unauthenticated.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainDisplayWithChainsDto'
+      tags:
+        - domains [Private]
+  /domains/all-authenticated:
+    get:
+      operationId: DomainsController_getDomainsAuthenticated
+      summary: Get domains authenticated.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainDisplayUserDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains/{clanUuid}/join:
+    post:
+      operationId: DomainsController_joinDomain
+      summary: Join clan.
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          description: UUID of the domain
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains/{clanUuid}/leave:
+    post:
+      operationId: DomainsController_leaveDomain
+      summary: Leave clain.
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          description: UUID of the clan
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains:
+    post:
+      operationId: DomainsController_createClan
+      summary: 'Create a clan. [Required Permissions]: all_clans:crud '
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClanDto'
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains/{clanUuid}/update:
+    patch:
+      operationId: DomainsController_updateClan
+      summary: 'Update clan [Required Permissions]: clan_details:write '
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateDomainDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainDisplayDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains/collection-permissions:
+    get:
+      operationId: CollectionPermissionsController_getPublicCollectionPermissions
+      summary: ''
+      description: View permissioned assets across all domains
+      parameters: []
+      responses:
+        '200':
+          description: returns created permission
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainCollectionPermissions'
+      tags:
+        - domains [Private]
+  /domains/{clanUuid}/collection-permissions:
+    get:
+      operationId: CollectionPermissionsController_getCollectionPermissions
+      summary: >-
+        Get collection permissions by domain [Required Permissions]:
+        asset_rule:read 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewCollectionPermissionDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+    post:
+      operationId: CollectionPermissionsController_setCollectionPermission
+      summary: 'Set collection permission [Required Permissions]: asset_rule:write '
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Collection permission data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollectionPermissionDto'
+      responses:
+        '200':
+          description: returns created permission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewCollectionPermissionDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /domains/{clanUuid}/collection-permissions/{permissionUuid}:
+    delete:
+      operationId: CollectionPermissionsController_deleteCollectionPermission
+      summary: 'Delete collection permission [Required Permissions]: asset_rule:write '
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: permissionUuid
+          required: true
+          in: path
+          description: UUID of the permission
+          schema:
+            type: string
+      responses:
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+    put:
+      operationId: CollectionPermissionsController_updateCollectionPermission
+      summary: 'Update collection permission [Required Permissions]: asset_rule:write '
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: permissionUuid
+          required: true
+          in: path
+          description: UUID of the permission
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Collection permission data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionPermissionDto'
+      responses:
+        '200':
+          description: returns updated permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewCollectionPermissionDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - domains [Private]
+      security:
+        - bearer: []
+  /auth/kilt/wallet_session:
+    get:
+      operationId: KiltAuthController_walletSession
+      summary: Get kilt wallet session challenge
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth [Private]
+    post:
+      operationId: KiltAuthController_validateWalletSession
+      summary: Validate kilt wallet session
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletSessionDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth [Private]
+  /auth/kilt/wallet_login:
+    get:
+      operationId: KiltAuthController_getWalletCredential
+      summary: Get kilt wallet login challenge
+      parameters:
+        - name: sessionId
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth [Private]
+    post:
+      operationId: KiltAuthController_validateWalletCredential
+      summary: Validate kilt wallet login challenge
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletLoginDto'
+      responses:
+        '200':
+          description: VerifyDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyDto'
+      tags:
+        - auth [Private]
+  /auth/kilt/did_configuration:
+    get:
+      operationId: KiltAuthController_didConfiguration
+      summary: Dynamically generated did-configuration.json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth [Private]
+  /auth/kilt/add_attestation_key:
+    get:
+      operationId: KiltAuthController_addAttestationKey
+      summary: Add attestation key
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - auth [Private]
+      security:
+        - AuthenticationHeader: []
+  /auth/email/login:
+    post:
+      operationId: EmailAuthController_login
+      summary: Post email and sends login code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: boolean
+      tags:
+        - auth [Private]
+  /auth/email/change:
+    put:
+      operationId: EmailAuthController_change
+      summary: Change email address and send login code to new email
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: boolean
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - auth [Private]
+      security:
+        - bearer: []
+  /auth/email/verify:
+    post:
+      operationId: EmailAuthController_verify
+      summary: Verify login code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequestDto'
+      responses:
+        '200':
+          description: VerifyDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyDto'
+      tags:
+        - auth [Private]
+  /auth/google/verify:
+    post:
+      operationId: GoogleAuthController_verify
+      summary: Verify google jwt
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyGoogleTokenDto'
+      responses:
+        '200':
+          description: VerifyDto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyDto'
+      tags:
+        - auth [Private]
+  /twitter/link:
+    post:
+      operationId: TwitterController_processCode
+      summary: Link twitter account
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwitterCodeDto'
+      responses:
+        '200':
+          description: Successfully processed the Twitter OAuth code.
+        '400':
+          description: Bad Request if the code is invalid.
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - twitter [Private]
+      security:
+        - bearer: []
+  /twitter/unlink:
+    post:
+      operationId: TwitterController_unlinkTwitterAccount
+      summary: Unlink twitter account
+      parameters: []
+      responses:
+        '200':
+          description: Twitter link successfully unlinked.
+        '400':
+          description: Unable to unlink Twitter account.
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - twitter [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/add-role:
+    post:
+      operationId: AccessControlApiController_addRole
+      summary: >-
+        Assign a role. [Required Permissions]: all_clans:crud OR
+        clan_role:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRemoveRoleFromUserDto'
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/remove-role:
+    post:
+      operationId: AccessControlApiController_removeRole
+      summary: >-
+        Remove a role. [Required Permissions]: all_clans:crud OR
+        clan_role:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRemoveRoleFromUserDto'
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/roles:
+    get:
+      operationId: AccessControlApiController_readRoles
+      summary: 'Read roles. [Required Permissions]: clan_role:read '
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ReadClanRolesDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReadClanRolesDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/available-roles:
+    get:
+      operationId: AccessControlApiController_availableRoles
+      summary: >-
+        Shows all roles that clan can use, regardless of the user who makes the
+        request. [Required Permissions]: clan_role:read 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RolePermissionsDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RolePermissionsDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key:
+    get:
+      operationId: AccessControlApiController_apiKeys
+      summary: >-
+        Shows all keys in clan if permission clan_api_keys:read or shows just
+        your own keys if permission self_api_key:write. [Required Permissions]:
+        clan_api_keys:read OR self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ApiKeyDto[]
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKeyDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key/available-permissions:
+    get:
+      operationId: AccessControlApiController_apiAvailablePermissions
+      summary: >-
+        Shows all permissions user can create an api key for. [Required
+        Permissions]: clan_api_keys:write OR self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ApiPermissionsDto
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPermissionsDto'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key/create:
+    post:
+      operationId: AccessControlApiController_createApiKey
+      summary: >-
+        Create an API key. [Required Permissions]: clan_api_keys:write OR
+        self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPermissionDto'
+      responses:
+        '200':
+          description: The API key has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCreateDtoResponse'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key/{apiCredentialUuid}/delete:
+    delete:
+      operationId: AccessControlApiController_deleteApiKey
+      summary: >-
+        Delete an API key. [Required Permissions]: clan_api_keys:write OR
+        self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: apiCredentialUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key/{apiCredentialUuid}/rotate:
+    post:
+      operationId: AccessControlApiController_rotateApiKey
+      summary: >-
+        Rotate an API key. [Required Permissions]: clan_api_keys:write OR
+        self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: apiCredentialUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The API key has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiCreateDtoResponse'
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+  /access-control/{clanUuid}/api-key/{apiCredentialUuid}/edit:
+    patch:
+      operationId: AccessControlApiController_editApiKey
+      summary: >-
+        Add permission to API key. [Required Permissions]: clan_api_keys:write
+        OR self_api_key:write 
+      parameters:
+        - name: clanUuid
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: apiCredentialUuid
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPermissionDto'
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: JWT invalid.
+        '403':
+          description: User doesn't have the necessary Moonsama clan permissions.
+      tags:
+        - Access Control [Private]
+      security:
+        - bearer: []
+info:
+  title: Moonsama Multiverse Oracle
+  description: Oracle of the Moonsama Multiverse Portal
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+    AuthenticationHeader:
+      type: apiKey
+      in: header
+      name: AuthenticationHeader
+    oauth2:
+      type: oauth2
+      flows: {}
+  schemas:
+    TokenFilterV1Dto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain ID
+        assetAddress:
+          type: string
+          description: Asset Address
+        tokenId:
+          type: string
+          description: Token ID
+    SnapshotQueryOptionsV1Dto:
+      type: object
+      properties:
+        snapshotDate:
+          type: number
+          description: >-
+            Snapshot Date as Unix timestamp (milliseconds since epoch). If not
+            included will be current time
+          example: 1723459164601
+        userUuids:
+          description: User UUIDs
+          type: array
+          items:
+            type: string
+        tokenFilters:
+          description: Token Filters
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenFilterV1Dto'
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+      required:
+        - snapshotDate
+    SnapshotResultV1Dto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+        chainId:
+          type: number
+        assetAddress:
+          type: string
+        assetId:
+          type: string
+        decimals:
+          type: number
+        imported:
+          type: string
+        enraptured:
+          type: string
+        staked:
+          type: string
+      required:
+        - userUuid
+        - chainId
+        - assetAddress
+        - assetId
+        - decimals
+        - imported
+        - enraptured
+        - staked
+    SnapshotResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: Snapshot Results
+          type: array
+          items:
+            $ref: '#/components/schemas/SnapshotResultV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    StakingSnapshotRequestV1Dto:
+      type: object
+      properties:
+        snapshotDate:
+          type: number
+          description: >-
+            Snapshot Date as Unix timestamp (milliseconds since epoch). If not
+            included will be current time
+          example: 1723459164602
+        stakingCampaignUuids:
+          description: optional filter for Staking Campaign UUIDs
+          type: array
+          items:
+            type: string
+        userUuids:
+          description: optional filter for User UUIDs
+          type: array
+          items:
+            type: string
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+      required:
+        - snapshotDate
+    StakingSnapshotResultV1Dto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+        stakingCampaignUuid:
+          type: string
+      required:
+        - userUuid
+        - stakingCampaignUuid
+    StakingSnapshotResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: Staking Snapshot Results
+          type: array
+          items:
+            $ref: '#/components/schemas/StakingSnapshotResultV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    MoonpowerRequestV1Dto:
+      type: object
+      properties:
+        snapshotDate:
+          type: number
+          description: >-
+            Snapshot Date as Unix timestamp (milliseconds since epoch). If not
+            included will be current time
+          example: 1699862210000
+        userUuids:
+          description: User UUIDs
+          type: array
+          items:
+            type: string
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+      required:
+        - snapshotDate
+        - userUuids
+    MoonpowerResultV1Dto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+        moonsamas:
+          type: string
+        exosamas:
+          type: string
+        multiverseArt:
+          type: string
+        sama:
+          type: string
+        moonpower:
+          type: string
+      required:
+        - userUuid
+        - moonsamas
+        - exosamas
+        - multiverseArt
+        - sama
+        - moonpower
+    MoonpowerResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: Moonpower Results
+          type: array
+          items:
+            $ref: '#/components/schemas/MoonpowerResultV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    UsersRequestV1Dto:
+      type: object
+      properties:
+        userUuids:
+          description: User UUIDs
+          type: array
+          items:
+            type: string
+        query:
+          type: string
+          description: Query by gamertag or user uuid
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+    UsersResultV1Dto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+        gamerTag:
+          type: string
+      required:
+        - userUuid
+        - gamerTag
+    UsersResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: Users
+          type: array
+          items:
+            $ref: '#/components/schemas/UsersResultV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    CreateUserListRequestV1Dto:
+      type: object
+      properties:
+        userListName:
+          type: string
+          description: Name of the user list
+      required:
+        - userListName
+    CreateUserListResponseV1Dto:
+      type: object
+      properties:
+        userListUuid:
+          type: string
+          description: User list uuid
+        userListName:
+          type: string
+          description: Name of the user list
+      required:
+        - userListUuid
+        - userListName
+    ListUserListRequestV1Dto:
+      type: object
+      properties:
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+    ListUserListV1Dto:
+      type: object
+      properties:
+        userListUuid:
+          type: string
+          description: User list uuid
+        userListName:
+          type: string
+          description: Name of the user list
+      required:
+        - userListUuid
+        - userListName
+    ListUserListResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: User list results
+          type: array
+          items:
+            $ref: '#/components/schemas/ListUserListV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    UserListUsersRequestV1Dto:
+      type: object
+      properties:
+        userUuids:
+          description: optional filter for User UUIDs
+          type: array
+          items:
+            type: string
+        userListUuids:
+          description: optional filter for User List UUIDs
+          type: array
+          items:
+            type: string
+        take:
+          type: number
+          description: 'Number of records to take [Max: 1000]'
+          example: 10
+        skip:
+          type: number
+          description: Offset for records
+          example: 0
+    UserListUserV1Dto:
+      type: object
+      properties:
+        userListUuid:
+          type: string
+          description: User list uuid
+        userListName:
+          type: string
+          description: Name of the user list
+        userUuid:
+          type: string
+          description: userUuid
+        gamerTag:
+          type: string
+          description: gamer tag
+      required:
+        - userListUuid
+        - userListName
+        - userUuid
+        - gamerTag
+    UserListUsersResponseV1Dto:
+      type: object
+      properties:
+        results:
+          description: User from user list
+          type: array
+          items:
+            $ref: '#/components/schemas/UserListUserV1Dto'
+        total:
+          type: string
+          description: Total number of records
+      required:
+        - results
+        - total
+    UpdateUserListRequestV1Dto:
+      type: object
+      properties:
+        userListName:
+          type: string
+          description: Name of the user list
+      required:
+        - userListName
+    AddUsersToListRequestV1Dto:
+      type: object
+      properties:
+        userUuids:
+          description: UUIDs of the users
+          type: array
+          items:
+            type: string
+      required:
+        - userUuids
+    RemoveUsersFromListRequestV1Dto:
+      type: object
+      properties:
+        userUuids:
+          description: UUIDs of the users
+          type: array
+          items:
+            type: string
+      required:
+        - userUuids
+    PublicViewStakingCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        uuid:
+          type: string
+        createdAt:
+          type: number
+        clanUuid:
+          type: string
+      required:
+        - name
+        - description
+        - uuid
+        - createdAt
+        - clanUuid
+    AuthenticatedViewStakingCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        uuid:
+          type: string
+        createdAt:
+          type: number
+        clanUuid:
+          type: string
+        joined:
+          type: boolean
+        eligible:
+          type: boolean
+      required:
+        - name
+        - description
+        - uuid
+        - createdAt
+        - clanUuid
+        - joined
+        - eligible
+    Oauth2CreateClientDto:
+      type: object
+      properties:
+        appName:
+          type: string
+          description: Name of your OAuth 2.0 client
+        redirectUri:
+          type: string
+          description: Redirect Uri of your OAuth 2.0 client
+        scopes:
+          description: >-
+            Broadest scopes your OAuth 2.0 client will be allowed to access. For
+            individual users can request lesser scopes.
+          example:
+            - user:gamer_tag.read
+            - user:uuid.read
+            - openid
+            - user:gamer_tag.write
+          type: array
+          items:
+            type: string
+      required:
+        - appName
+        - redirectUri
+        - scopes
+    Oauth2ClientDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+          nullable: true
+        appName:
+          type: string
+        redirectUri:
+          type: string
+        accessTokenValidity:
+          type: number
+          description: number in seconds
+        refreshTokenValidity:
+          type: number
+          description: number in seconds
+        scopes:
+          type: array
+          items:
+            type: string
+        approved:
+          type: boolean
+        ssoValidity:
+          type: number
+          description: >-
+            [openid scope required] number in seconds that issued sso jwt is
+            valid for 
+        ssoPublicKey:
+          type: string
+          description: >-
+            [openid scope required] Public key you can use to validate jwt for
+            sso
+          example: |-
+            --------BEGIN PUBLIC KEY--------
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwJ
+      required:
+        - clientId
+        - clientSecret
+        - appName
+        - redirectUri
+        - accessTokenValidity
+        - refreshTokenValidity
+        - scopes
+        - approved
+    Oauth2ClientUpdateDto:
+      type: object
+      properties:
+        appName:
+          type: string
+          description: Name of your OAuth 2.0 client
+        redirectUri:
+          type: string
+          description: Redirect Uri of your OAuth 2.0 client
+        scopes:
+          description: >-
+            Broadest scopes your OAuth 2.0 client will be allowed to access. For
+            individual users can request lesser scopes.
+          example:
+            - user:gamer_tag.read
+            - user:uuid.read
+          type: array
+          items:
+            type: string
+      required:
+        - appName
+        - redirectUri
+        - scopes
+    Oauth2PublicClientScopeDto:
+      type: object
+      properties:
+        scope:
+          type: string
+          readOnly: true
+        prettyScope:
+          type: string
+          readOnly: true
+      required:
+        - scope
+        - prettyScope
+    Oauth2PublicClientDto:
+      type: object
+      properties:
+        appName:
+          type: string
+          readOnly: true
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Oauth2PublicClientScopeDto'
+      required:
+        - appName
+        - scopes
+    AuthorizeResponseDto:
+      type: object
+      properties:
+        url:
+          type: string
+      required:
+        - url
+    TokenBodyDto:
+      type: object
+      properties:
+        grant_type:
+          type: string
+          description: Value MUST be authorization_code OR refresh_token
+          example: authorization_code
+        client_id:
+          type: string
+          description: client_id
+          example: 97969c543b7d0941f58b5f04f7af4d7d
+        client_secret:
+          type: string
+          description: client_secret
+          example: 97969c543b7d0941f58b5f04f7af4d7d
+        code:
+          type: string
+          description: >-
+            [Required: grant_type=authorization_code] The authorization code
+            received from the authorization server.
+          example: 22748016b850059220ac0ccb50f613af
+        redirect_uri:
+          type: string
+          description: >-
+            [Required: grant_type=authorization_code] if the "redirect_uri"
+            parameter was included in the authorization request.
+          example: http://localhost:3000/cb
+        refresh_token:
+          type: string
+          description: '[Required: grant_type=refresh_token]'
+          example: ac3bc75429e3ed9e92d9044d8bf6a821
+      required:
+        - grant_type
+        - client_id
+        - client_secret
+    TokenResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: access_token
+          example: 9021ca9bb7160f8eca4402a666286be3
+        token_type:
+          type: string
+          description: token_type always "bearer"
+          example: bearer
+        expires_in:
+          type: number
+          description: >-
+            expires_in time in ms access_token token expires in. Value set by
+            client app
+          example: 3600
+        refresh_token:
+          type: string
+          description: refresh_token
+          example: 38dacf7923012fe91db32a9cbf6d4862
+        refresh_token_expires_in:
+          type: number
+          description: >-
+            expires_in time in ms access_token token expires in. Value set by
+            client app
+          example: 1209600
+        sso_jwt:
+          type: string
+          description: jwt used for sso, use your client public to validate the jwt
+          example: ey=23423452asfda
+        sso_jwt_expires_in:
+          type: number
+          description: >-
+            expires_in time in ms sso_jwt token expires in. Value set by client
+            app
+          example: 3600
+      required:
+        - access_token
+        - token_type
+        - expires_in
+        - refresh_token
+        - refresh_token_expires_in
+    OauthGetUserDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: user uuid
+          example: 9021ca9bb7160f8eca4402a666286be3
+        gamerTag:
+          type: string
+          description: user gamer tag
+          example: filthyn00b
+          nullable: true
+        roles:
+          description: User permissions
+          example: ADMIN
+          type: array
+          items:
+            type: string
+        updatedAt:
+          type: string
+          description: >-
+            String int in seconds since epoch, equivalent to
+            String(Math.floor(new Date().getTime()/1000)). updatedAt shows when
+            users added asset, removed asset, etc. Events that change updatedAt
+            subject to change.
+      required:
+        - uuid
+        - gamerTag
+        - roles
+        - updatedAt
+    OauthSetGamerTagRequestDto:
+      type: object
+      properties:
+        gamerTag:
+          type: string
+          description: user gamer tag
+          example: filthyn00b
+      required:
+        - gamerTag
+    OauthSetGamerTagDto:
+      type: object
+      properties:
+        gamerTag:
+          type: string
+          description: user gamer tag
+          example: filthyn00b
+      required:
+        - gamerTag
+    TextureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Individual texture id from database
+        assetType:
+          type: string
+          description: Material asset type
+          enum:
+            - NONE
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: number
+          description: Asset id, aka token id
+        textureData:
+          type: string
+          description: Texture data
+        textureSignature:
+          type: string
+          description: Texture signature
+        equipped:
+          type: boolean
+          description: Whether the skin is the currently equipped one.
+      required:
+        - id
+        - assetType
+        - assetAddress
+        - assetId
+        - textureData
+        - textureSignature
+        - equipped
+    StakedAssetWithCollectionInfoDto:
+      type: object
+      properties:
+        portalHash:
+          type: string
+          description: Portal hash
+          example: '0x2676df387854ae95a53182e2df50b7cada9b822e8aed6a0005a190b9100c9999'
+        enraptured:
+          type: boolean
+          description: Enraptured
+          example: true
+        recognizedAssetType:
+          type: string
+          description: Recognized asset type
+          enum:
+            - NONE
+            - MSAMA
+            - TICKET
+            - TEST
+            - PLOT
+            - OFFHAND
+            - WEAPON_SKIN
+            - TEMPORARY_TICKET
+            - ITEM
+            - WEARABLE
+            - RESOURCE
+            - CONSUMABLE
+            - PONDSAMA_FISH
+            - GROMLIN
+            - EXOSAMA
+            - MISC_ART
+            - NATIVE_TOKEN
+            - WILDSAMA
+          example: EXOSAMA
+        amount:
+          type: string
+          description: Amount as integer, eg wei if 18 decimals
+          example: '1000000000000000000'
+        metadata:
+          type: object
+          description: NFT metadata, can potentially be null
+          nullable: true
+        assetId:
+          type: number
+          description: Asset id, 0 for ERC20 or native tokens
+          example: 94
+        chainId:
+          type: number
+          description: Chain id
+          example: 1285
+        assetType:
+          type: string
+          description: Asset type
+          example: ERC721
+          enum:
+            - NONE
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+        assetAddress:
+          type: string
+          description: Asset address
+          example: '0xb654611f84a8dc429ba3cb4fda9fad236c505a1a'
+      required:
+        - portalHash
+        - enraptured
+        - recognizedAssetType
+        - amount
+        - metadata
+        - assetId
+        - chainId
+        - assetType
+        - assetAddress
+    FungibleBalanceDto:
+      type: object
+      properties:
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: string
+          description: Asset id
+        chainId:
+          type: number
+          description: Chain id
+        amount:
+          type: string
+          description: Amount in ether
+      required:
+        - assetAddress
+        - assetId
+        - chainId
+        - amount
+    UserEntryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User name the assets belong to.
+          nullable: true
+        uuid:
+          type: string
+          description: User uuid the assets belong to. Trimmed.
+      required:
+        - name
+        - uuid
+    FungibleBalanceEntryDto:
+      type: object
+      properties:
+        balances:
+          description: Fungible balances of the user
+          type: array
+          items:
+            $ref: '#/components/schemas/FungibleBalanceDto'
+        user:
+          description: User info the assets belong to
+          allOf:
+            - $ref: '#/components/schemas/UserEntryDto'
+      required:
+        - balances
+        - user
+    OauthUserAssetsResponseDto:
+      type: object
+      properties:
+        skins:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextureDto'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/StakedAssetWithCollectionInfoDto'
+        balances:
+          $ref: '#/components/schemas/FungibleBalanceEntryDto'
+      required:
+        - skins
+        - assets
+        - balances
+    OauthUserKarenSamaResponseDto:
+      type: object
+      properties:
+        eligible:
+          type: boolean
+      required:
+        - eligible
+    ProfileNewDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: User UUID
+        email:
+          type: string
+          description: Email
+          nullable: true
+        gamerTag:
+          type: string
+          description: Gamer Tag
+          nullable: true
+        twitterId:
+          type: string
+          description: Mincraft UUID
+          nullable: true
+        twitterUsername:
+          type: string
+          description: Minecraft user name
+          nullable: true
+        canUseAdmin:
+          type: boolean
+          description: Has access to admin panel
+        blacklisted:
+          type: boolean
+          description: Whether the user is blacklisted or not
+      required:
+        - uuid
+        - email
+        - gamerTag
+        - twitterId
+        - twitterUsername
+        - canUseAdmin
+        - blacklisted
+    PermissionDto:
+      type: object
+      properties:
+        permissionUuid:
+          type: string
+          description: Permission uuid
+        permission:
+          type: string
+          description: Name of the permission
+        permissionDescription:
+          type: string
+          description: Permission Description
+      required:
+        - permissionUuid
+        - permission
+        - permissionDescription
+    RolePermissionsDto:
+      type: object
+      properties:
+        clanUuid:
+          type: string
+          description: Clan uuid
+        clanName:
+          type: string
+          description: Clan name
+        roleUuid:
+          type: string
+          description: Role uuid
+        role:
+          type: string
+          description: Name of the role
+        permissions:
+          description: List of permissions for the role
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+      required:
+        - clanUuid
+        - clanName
+        - roleUuid
+        - role
+        - permissions
+    AdminProfileDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: UUID of the user
+        email:
+          type: string
+          description: Email of the user
+        gamerTag:
+          type: string
+          description: Gamer tag of the user
+          nullable: true
+        roles:
+          description: Roles associated with the user
+          type: array
+          items:
+            $ref: '#/components/schemas/RolePermissionsDto'
+      required:
+        - uuid
+        - email
+        - gamerTag
+        - roles
+    InGameItemDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain id where asset lives
+        assetType:
+          type: string
+          description: Asset type
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: number
+          description: Asset id, aka token id
+        hidden:
+          type: boolean
+          description: Dont show item in view
+        treatAsFungible:
+          type: boolean
+          description: Whether the assets are combined and have a balance
+        decimals:
+          type: number
+          description: Number of decimals
+        amount:
+          type: string
+          description: Amount of the asset in wei
+        hash:
+          type: string
+          description: Hash of the entry. Needed for exports.
+        inAddresses:
+          description: Address asset was imported from
+          type: array
+          items:
+            type: string
+        enraptured:
+          type: boolean
+          description: Whether the asset is enraptured
+        gamepass:
+          type: boolean
+          description: Whether the asset is a gamepass
+        lendee:
+          type: boolean
+          description: Whether the user is lendee for this asset
+        lendor:
+          type: boolean
+          description: Whether the user is lendor for this asset
+        lendorRssPercentage:
+          type: number
+          description: Percentage of RSS earned by lendee that is kept by lendor. 0-100
+          nullable: true
+        migrated:
+          type: boolean
+          description: Whether item was migrated.
+        migrationStatus:
+          type: string
+          description: Migration status.
+          enum:
+            - QUEUED
+            - ERROR
+            - IN_PROGRESS
+            - SUCCESS
+          nullable: true
+        migrationTransactionHash:
+          type: string
+          description: Migration transaction hash.
+          nullable: true
+      required:
+        - assetType
+        - assetAddress
+        - assetId
+        - hidden
+        - treatAsFungible
+        - decimals
+        - amount
+        - hash
+        - inAddresses
+        - enraptured
+        - gamepass
+        - lendee
+        - lendor
+        - lendorRssPercentage
+        - migrated
+        - migrationStatus
+        - migrationTransactionHash
+    InGameResourceDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain id where asset lives
+        assetType:
+          type: string
+          description: Asset type
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: number
+          description: Asset id, aka token id
+        hidden:
+          type: boolean
+          description: Dont show item in view
+        treatAsFungible:
+          type: boolean
+          description: Whether the assets are combined and have a balance
+        decimals:
+          type: number
+          description: Number of decimals
+        amount:
+          type: string
+          description: Amount of the asset in wei
+        id:
+          type: string
+          description: Inventory id.
+        summonEnabled:
+          type: boolean
+          description: Summon enabled
+        inProgress:
+          type: boolean
+          description: Whether summon in progress
+      required:
+        - assetType
+        - assetAddress
+        - assetId
+        - hidden
+        - treatAsFungible
+        - decimals
+        - amount
+        - id
+        - summonEnabled
+        - inProgress
+    GamerTagDto:
+      type: object
+      properties:
+        gamerTag:
+          type: string
+          description: Gamer tag
+      required:
+        - gamerTag
+    PortalContractPermission:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain id
+          example: 1
+        portalContractAddress:
+          type: string
+          description: Portal contract address
+          example: '0x123456789abcdef0123456789abcdef0123456789'
+        portalContractType:
+          type: string
+          description: Portal contract type
+          example: PORTAL_V4
+          enum:
+            - PORTAL_V1
+            - PORTAL_V2
+            - PORTAL_V3
+            - PORTAL_V4
+            - STAKING_V1
+        ownerAddress:
+          type: string
+          description: Owner wallet address
+          example: '0x987654321abcdef0123456789abcdef0123456789'
+        ownershipChangeAllowed:
+          type: boolean
+          description: Whether user allows ownership change
+          example: true
+      required:
+        - chainId
+        - portalContractAddress
+        - portalContractType
+        - ownerAddress
+        - ownershipChangeAllowed
+    PortalContractPermissions:
+      type: object
+      properties:
+        permissions:
+          description: List of Portal Contract Permissions
+          example:
+            - chainId: 1
+              portalContractAddress: '0x123456789abcdef0123456789abcdef0123456789'
+              portalContractType: PORTAL_V4
+              ownerAddress: '0x987654321abcdef0123456789abcdef0123456789'
+              ownershipChangeAllowed: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalContractPermission'
+      required:
+        - permissions
+    SkinselectDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Skin id
+          example: msama-1
+      required:
+        - id
+    SnapshotDto:
+      type: object
+      properties:
+        materialName:
+          type: string
+          description: Material name
+        amount:
+          type: number
+          description: Number of units of the material
+        position:
+          type: number
+          description: Position of item in user inventory if any
+      required:
+        - materialName
+        - amount
+    SnapshotsDto:
+      type: object
+      properties:
+        snapshots:
+          description: Snapshot array
+          type: array
+          items:
+            $ref: '#/components/schemas/SnapshotDto'
+        gameId:
+          type: string
+          description: 'Game this snapshot belongs to: Default: NULL.'
+        playTime:
+          type: number
+          description: 'User playtime in miliseconds: Default: 0.'
+        power:
+          type: number
+          description: 'User power. Default: 0.'
+        accumulatePlayTime:
+          type: boolean
+          description: >-
+            Whether to add the playtime to the existing one if already has.
+            Default: false
+      required:
+        - snapshots
+    UserSnapshotsDto:
+      type: object
+      properties:
+        snapshots:
+          description: Snapshot array
+          type: array
+          items:
+            $ref: '#/components/schemas/SnapshotDto'
+        gameId:
+          type: string
+          description: 'Game this snapshot belongs to: Default: NULL.'
+        playTime:
+          type: number
+          description: 'User playtime in miliseconds: Default: 0.'
+        power:
+          type: number
+          description: 'User power. Default: 0.'
+        accumulatePlayTime:
+          type: boolean
+          description: >-
+            Whether to add the playtime to the existing one if already has.
+            Default: false
+        uuid:
+          type: string
+          description: Trimmed uuid the snapshots belong to.
+      required:
+        - snapshots
+        - uuid
+    BulkSnapshotRequestDto:
+      type: object
+      properties:
+        entries:
+          description: Snapshot entries.
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSnapshotsDto'
+      required:
+        - entries
+    SnapshotRowDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Material name
+        amount:
+          type: string
+          description: Number of units of the material
+        materialName:
+          type: string
+          description: Material name
+        userUuid:
+          type: string
+          description: User uuid
+        gameId:
+          type: string
+          description: game id
+      required:
+        - id
+        - amount
+        - materialName
+        - userUuid
+        - gameId
+    SetGameTypeDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the game
+        ip:
+          type: string
+          description: IP of the game
+        description:
+          type: string
+          description: Description of the game
+        image:
+          type: string
+          description: Image of the game as string
+      required:
+        - name
+        - ip
+        - description
+        - image
+    SetGameDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the game
+        description:
+          type: string
+          description: Description of the game
+        image:
+          type: string
+          description: Image of the game as string
+        ongoing:
+          type: boolean
+          description: Whether the game is ongoing/active or not
+        type:
+          type: string
+          description: Game kind. ADVANCEMENTS, SCOREBOARD, CARNAGE
+          enum:
+            - ADVANCEMENTS
+            - SCOREBOARD
+            - CARNAGE
+        gameTypeId:
+          type: string
+          description: Game type ID this game belongs to
+      required:
+        - name
+        - description
+        - image
+        - ongoing
+        - type
+        - gameTypeId
+    ProfileDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: User UUID
+        email:
+          type: string
+          description: Email
+          nullable: true
+        gamerTag:
+          type: string
+          description: Gamer Tag
+          nullable: true
+        minecraftUuid:
+          type: string
+          description: Mincraft UUID
+          nullable: true
+        minecraftUserName:
+          type: string
+          description: Minecraft user name
+          nullable: true
+        roles:
+          description: User role
+          type: array
+          items:
+            type: string
+        hasGame:
+          type: boolean
+          description: Bought the game or not
+        allowedToPlay:
+          type: boolean
+          description: Is the user allowed to play
+        numGamePassAsset:
+          type: number
+          description: Number of game pass eligible assets the user owns
+        blacklisted:
+          type: boolean
+          description: Whether the user is blacklisted or not
+      required:
+        - uuid
+        - email
+        - gamerTag
+        - minecraftUuid
+        - minecraftUserName
+        - roles
+        - hasGame
+        - allowedToPlay
+        - numGamePassAsset
+        - blacklisted
+    UserDataDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        minecraftUuid:
+          type: string
+          nullable: true
+        profile:
+          $ref: '#/components/schemas/ProfileDto'
+        skins:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextureDto'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/StakedAssetWithCollectionInfoDto'
+        balances:
+          $ref: '#/components/schemas/FungibleBalanceEntryDto'
+      required:
+        - uuid
+        - minecraftUuid
+        - profile
+        - skins
+        - assets
+        - balances
+    ResourceInventory:
+      type: object
+      properties:
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: string
+          description: Asset id
+        chainId:
+          type: number
+          description: Chain id
+        amount:
+          type: string
+          description: Amount
+      required:
+        - assetAddress
+        - assetId
+        - chainId
+        - amount
+    SetResourceInventoryItems:
+      type: object
+      properties:
+        items:
+          description: items
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceInventory'
+      required:
+        - items
+    ChainConfigDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain ID
+        chainName:
+          type: string
+        iconUrl:
+          type: string
+        symbol:
+          type: string
+        publicRpcUrls:
+          type: array
+          items:
+            type: string
+        explorerUrl:
+          type: string
+        multicallAddress:
+          type: string
+          description: Multicall address
+          nullable: true
+        portalContract:
+          type: string
+          description: Portal contract type
+          nullable: true
+          enum:
+            - PORTAL_V1
+            - PORTAL_V2
+            - PORTAL_V3
+            - PORTAL_V4
+            - STAKING_V1
+        portalContractAddress:
+          type: string
+          description: Portal contract address
+          nullable: true
+        portalWarehouseAddress:
+          type: string
+          description: Portal warehouse address
+          nullable: true
+        rewardsPortalContract:
+          type: string
+          description: Rewards portal contract type
+          nullable: true
+          enum:
+            - PORTAL_V1
+            - PORTAL_V2
+            - PORTAL_V3
+            - PORTAL_V4
+            - STAKING_V1
+        rewardsPortalContractAddress:
+          type: string
+          description: Rewards portal contract address
+          nullable: true
+      required:
+        - chainId
+        - chainName
+        - iconUrl
+        - symbol
+        - publicRpcUrls
+        - explorerUrl
+        - multicallAddress
+        - portalContract
+        - portalContractAddress
+        - portalWarehouseAddress
+        - rewardsPortalContract
+        - rewardsPortalContractAddress
+    OracleConfigResponseDto:
+      type: object
+      properties:
+        nonceMessagePrefix:
+          type: string
+          description: Nonce prefix
+        chains:
+          description: Array of blockchain configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/ChainConfigDto'
+      required:
+        - nonceMessagePrefix
+        - chains
+    FaucetResponseDto:
+      type: object
+      properties:
+        transactionStatus:
+          type: string
+          description: transactionStatus
+          enum:
+            - QUEUED
+            - ERROR
+            - IN_PROGRESS
+            - SUCCESS
+        transactionHash:
+          type: string
+          description: transactionHash
+          nullable: true
+      required:
+        - transactionStatus
+        - transactionHash
+    FaucetRequestDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: address
+        g-recaptcha-response:
+          type: string
+          description: g-recaptcha-response
+      required:
+        - address
+        - g-recaptcha-response
+    InRequestDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain ID
+        assetType:
+          type: string
+          description: >-
+            Asset type integer. 0: none, 1: native, 2: erc20, 3: erc721, 4:
+            erc1155
+          enum:
+            - NONE
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: string
+          description: Asset Id, aka token Id. 0 for erc20 or native token
+        owner:
+          type: string
+          description: Owner of the asset
+        amount:
+          type: string
+          description: Amount to import in wei
+        enrapture:
+          type: boolean
+          description: Whether to enrapture or not.
+        autoMigrate:
+          type: boolean
+          description: Whether to migrate asset to new chain.
+      required:
+        - chainId
+        - assetType
+        - assetAddress
+        - assetId
+        - owner
+        - amount
+        - enrapture
+        - autoMigrate
+    InBatchRequestDto:
+      type: object
+      properties:
+        requests:
+          description: requests
+          type: array
+          items:
+            $ref: '#/components/schemas/InRequestDto'
+        signedMessage:
+          type: string
+          description: Wallet signed message
+          nullable: false
+      required:
+        - requests
+        - signedMessage
+    CallparamDto:
+      type: object
+      properties:
+        portalHash:
+          type: string
+          description: Portal hash
+        portalContract:
+          type: string
+          description: Contract type
+          enum:
+            - PORTAL_V1
+            - PORTAL_V2
+            - PORTAL_V3
+            - PORTAL_V4
+            - STAKING_V1
+        portalContractAddress:
+          type: string
+          description: Portal contract address
+        portalWarehouseAddress:
+          type: string
+          description: Portal Warehouse address
+        data:
+          type: string
+          description: Hex-string encoded bytes of function input parameter
+        signature:
+          type: string
+          description: Hex-string encoded bytes of signature
+      required:
+        - portalHash
+        - portalContract
+        - portalContractAddress
+        - portalWarehouseAddress
+        - data
+        - signature
+    InConfirmRequestDto:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: Portal hash
+      required:
+        - hash
+    InConfirmResponseDto:
+      type: object
+      properties:
+        payloadStatus:
+          type: string
+          description: payload status
+          enum:
+            - GENERATED
+            - SENT
+            - CONFIRMATION_PENDING
+            - CONFIRMED
+          example: CONFIRMED
+      required:
+        - payloadStatus
+    OutRequestDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+          description: Chain ID
+        assetType:
+          type: string
+          description: >-
+            Asset type integer. 0: none, 1: native, 2: erc20, 3: erc721, 4:
+            erc1155
+          enum:
+            - NONE
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+        assetAddress:
+          type: string
+          description: Asset address
+        assetId:
+          type: string
+          description: Asset Id, aka token Id. 0 for erc20 or native token
+        amount:
+          type: string
+          description: Amount to import in wei
+      required:
+        - chainId
+        - assetType
+        - assetAddress
+        - assetId
+        - amount
+    OutBatchRequestDto:
+      type: object
+      properties:
+        requests:
+          description: requests
+          type: array
+          items:
+            $ref: '#/components/schemas/OutRequestDto'
+      required:
+        - requests
+    OutConfirmRequestDto:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: hash
+      required:
+        - hash
+    SummonDto:
+      type: object
+      properties:
+        recipient:
+          type: string
+          description: Recipient of the asset
+        chainId:
+          type: number
+          description: Recipient of the asset
+      required:
+        - recipient
+        - chainId
+    CreateNonceRequestDto:
+      type: object
+      properties:
+        account:
+          type: string
+          description: Wallet address
+          nullable: false
+        g-recaptcha-response:
+          type: string
+          description: g-recaptcha-response
+          nullable: false
+      required:
+        - account
+        - g-recaptcha-response
+    CreateNonceResponseDto:
+      type: object
+      properties:
+        nonce:
+          type: string
+          description: Nonce
+          nullable: false
+      required:
+        - nonce
+    BankDto:
+      type: object
+      properties:
+        gameId:
+          type: string
+          description: 'Game ID of the snapshots to bank to bank. Default: null'
+        summonDisableOverride:
+          type: boolean
+          description: >-
+            Summon disable override. If summons are not disabled and you still
+            want to bank, set this flag to true.
+          example: true
+    UpdateMetadataDto:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: Hash of staked item
+      required:
+        - hash
+    RecoverAssetDto:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: Hash of staked item
+        userUuid:
+          type: string
+          description: >-
+            userUuid, will only be used if there is no userUuid in the inflow
+            log
+      required:
+        - hash
+    TabularDataRequestDto:
+      type: object
+      properties:
+        table:
+          type: string
+          description: Name of table
+        skip:
+          type: number
+          description: skip
+        take:
+          type: number
+          description: take
+        sortColumn:
+          type: string
+          description: order
+        order:
+          type: string
+          description: order
+          enum:
+            - ASC
+            - DESC
+        query:
+          type: string
+          description: query
+      required:
+        - table
+        - skip
+        - take
+    TabularDataResponseDto:
+      type: object
+      properties:
+        rows:
+          type: array
+          description: Rows of data
+          items:
+            type: object
+        table:
+          type: string
+          description: Table name
+        skip:
+          type: number
+          description: Number of rows to skip
+        take:
+          type: number
+          description: Number of rows to take
+        numResults:
+          type: number
+          description: Total number of results
+        order:
+          type: string
+          description: Order direction
+          enum:
+            - ASC
+            - DESC
+        query:
+          type: string
+          description: Query string
+      required:
+        - rows
+        - table
+        - skip
+        - take
+        - numResults
+    DomainChainDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+        chainName:
+          type: string
+        iconUrl:
+          type: string
+      required:
+        - chainId
+        - chainName
+        - iconUrl
+    DomainDisplayWithChainsDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        iconUrl:
+          type: string
+        bannerUrl:
+          type: string
+        chains:
+          description: Snapshot Results
+          type: array
+          items:
+            $ref: '#/components/schemas/DomainChainDto'
+      required:
+        - uuid
+        - name
+        - slug
+        - shortDescription
+        - description
+        - iconUrl
+        - bannerUrl
+        - chains
+    DomainDisplayUserDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        iconUrl:
+          type: string
+        bannerUrl:
+          type: string
+        chains:
+          description: Snapshot Results
+          type: array
+          items:
+            $ref: '#/components/schemas/DomainChainDto'
+        joined:
+          type: boolean
+      required:
+        - uuid
+        - name
+        - slug
+        - shortDescription
+        - description
+        - iconUrl
+        - bannerUrl
+        - chains
+        - joined
+    CreateClanDto:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        iconUrl:
+          type: string
+          description: URL to icon - 255px x 255px
+        smallBannerUrl:
+          type: string
+          description: URL to the small banner - 900px x 450px
+        bannerUrl:
+          type: string
+          description: URL to thel banner - 4500px x 1050px
+      required:
+        - name
+        - slug
+        - shortDescription
+        - description
+        - iconUrl
+        - smallBannerUrl
+        - bannerUrl
+    UpdateDomainDto:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        iconFile:
+          type: string
+          format: binary
+        bannerFile:
+          type: string
+          format: binary
+    DomainDisplayDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        iconUrl:
+          type: string
+        bannerUrl:
+          type: string
+      required:
+        - uuid
+        - name
+        - slug
+        - shortDescription
+        - description
+        - iconUrl
+        - bannerUrl
+    CollectionForPermissionDto:
+      type: object
+      properties:
+        chainId:
+          type: number
+        assetType:
+          type: string
+          enum:
+            - NONE
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+        assetAddress:
+          type: string
+      required:
+        - chainId
+        - assetType
+        - assetAddress
+    PublicViewCollectionPermissionDto:
+      type: object
+      properties:
+        collectionPermissionUuid:
+          type: string
+        collection:
+          $ref: '#/components/schemas/CollectionForPermissionDto'
+        inMethod:
+          type: string
+          enum:
+            - NONE
+            - IMPORT
+            - ENRAPTURE
+            - MIGRATE
+        decimals:
+          type: number
+        idRange:
+          type: array
+          items:
+            type: string
+      required:
+        - collectionPermissionUuid
+        - collection
+        - inMethod
+        - decimals
+        - idRange
+    DomainCollectionPermissions:
+      type: object
+      properties:
+        clanUuid:
+          type: string
+        clanSlug:
+          type: string
+        collectionPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicViewCollectionPermissionDto'
+      required:
+        - clanUuid
+        - clanSlug
+        - collectionPermissions
+    ViewCollectionPermissionDto:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionForPermissionDto'
+        name:
+          type: string
+        inMethod:
+          type: string
+          enum:
+            - NONE
+            - IMPORT
+            - ENRAPTURE
+            - MIGRATE
+        stakable:
+          type: boolean
+        decimals:
+          type: number
+        idRange:
+          type: array
+          items:
+            type: string
+        rewardIdRange:
+          type: array
+          items:
+            type: string
+        uuid:
+          type: string
+        createdAt:
+          type: number
+      required:
+        - collections
+        - name
+        - inMethod
+        - stakable
+        - decimals
+        - idRange
+        - rewardIdRange
+        - uuid
+        - createdAt
+    CreateCollectionPermissionDto:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionForPermissionDto'
+        name:
+          type: string
+        inMethod:
+          type: string
+          enum:
+            - NONE
+            - IMPORT
+            - ENRAPTURE
+            - MIGRATE
+        stakable:
+          type: boolean
+        decimals:
+          type: number
+        idRange:
+          type: array
+          items:
+            type: string
+        rewardIdRange:
+          type: array
+          items:
+            type: string
+      required:
+        - collections
+        - name
+        - inMethod
+        - stakable
+        - decimals
+        - idRange
+        - rewardIdRange
+    UpdateCollectionPermissionDto:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionForPermissionDto'
+        name:
+          type: string
+        inMethod:
+          type: string
+          enum:
+            - NONE
+            - IMPORT
+            - ENRAPTURE
+            - MIGRATE
+        stakable:
+          type: boolean
+        decimals:
+          type: number
+        idRange:
+          type: array
+          items:
+            type: string
+        rewardIdRange:
+          type: array
+          items:
+            type: string
+        uuid:
+          type: string
+      required:
+        - collections
+        - name
+        - inMethod
+        - stakable
+        - decimals
+        - idRange
+        - rewardIdRange
+        - uuid
+    WalletSessionDto:
+      type: object
+      properties:
+        encryptionKeyId:
+          type: string
+          description: encryptionKeyId
+        nonce:
+          type: string
+          description: nonce
+        encryptedWalletSessionChallenge:
+          type: string
+          description: encryptedWalletSessionChallenge
+        sessionId:
+          type: string
+          description: sessionId
+      required:
+        - encryptionKeyId
+        - nonce
+        - encryptedWalletSessionChallenge
+        - sessionId
+    WalletLoginMessage:
+      type: object
+      properties:
+        ciphertext:
+          type: string
+          description: ciphertext
+        nonce:
+          type: string
+          description: nonce
+      required:
+        - ciphertext
+        - nonce
+    WalletLoginDto:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: Kilt wallet session id
+        message:
+          description: Message
+          allOf:
+            - $ref: '#/components/schemas/WalletLoginMessage'
+      required:
+        - sessionId
+        - message
+    VerifyDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: success
+        jwt:
+          type: string
+          description: jwt
+        profile:
+          description: profile
+          allOf:
+            - $ref: '#/components/schemas/ProfileNewDto'
+      required:
+        - success
+        - jwt
+        - profile
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email
+        g-recaptcha-response:
+          type: string
+          description: g-recaptcha-response
+      required:
+        - email
+        - g-recaptcha-response
+    VerifyRequestDto:
+      type: object
+      properties:
+        loginKey:
+          type: string
+          description: loginKey
+      required:
+        - loginKey
+    VerifyGoogleTokenDto:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The JWT to be verified
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      required:
+        - token
+    TwitterCodeDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: >-
+            The authorization code provided by Twitter after user
+            authentication.
+          example: A1B2C3D4
+        codeVerifier:
+          type: string
+          description: Unique session identifier.
+          example: A1B2C3D4
+      required:
+        - code
+        - codeVerifier
+    AddRemoveRoleFromUserDto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+          description: UUID of the user from whom the role is being added or removed
+          example: 123e4567-e89b-12d3-a456-426614174001
+        roleUuid:
+          type: string
+          description: UUID of the role being added or removed
+          example: 123e4567-e89b-12d3-a456-426614174002
+      required:
+        - userUuid
+        - roleUuid
+    ReadClanRolesDto:
+      type: object
+      properties:
+        userUuid:
+          type: string
+          description: UUID of the user
+        gamerTag:
+          type: string
+          description: Gamer tag of the user
+          nullable: true
+        role:
+          description: Role associated with the user
+          allOf:
+            - $ref: '#/components/schemas/RolePermissionsDto'
+      required:
+        - userUuid
+        - gamerTag
+        - role
+    ApiKeyDto:
+      type: object
+      properties:
+        clanUuid:
+          type: string
+          description: Clan uuid
+        clanName:
+          type: string
+          description: Clan name
+        apiCredentialUuid:
+          type: string
+          description: api credential uuid
+        apiCredentialName:
+          type: string
+          description: api credential name
+        userUuid:
+          type: string
+          description: user uuid
+        gamerTag:
+          type: string
+          description: gamertag
+        permissions:
+          description: List of permissions for the role
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+      required:
+        - clanUuid
+        - clanName
+        - apiCredentialUuid
+        - apiCredentialName
+        - userUuid
+        - gamerTag
+        - permissions
+    ApiPermissionsDto:
+      type: object
+      properties:
+        clanUuid:
+          type: string
+          description: Clan uuid
+        clanName:
+          type: string
+          description: Clan name
+        permissions:
+          description: List of permissions for the role
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+      required:
+        - clanUuid
+        - clanName
+        - permissions
+    ApiPermissionDto:
+      type: object
+      properties:
+        description:
+          type: string
+        permissionUuids:
+          type: array
+          items:
+            type: string
+      required:
+        - description
+        - permissionUuids
+    ApiCreateDtoResponse:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: The unique identifier for the API key
+          example: 123e4567-e89b-12d3-a456-426614174000
+        apiSecret:
+          type: string
+          description: The secret key for the API
+          example: s3cr3tK3y
+      required:
+        - apiKey
+        - apiSecret
